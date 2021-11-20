@@ -7,6 +7,7 @@ const { typeDefs, resolvers } = require("./schemas");
 // Import `authMiddleware()` function to be configured with the Apollo Server
 const {authMiddleware} = require('./utils/auth');
 
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 //start new instance of apolloserver
@@ -16,6 +17,8 @@ const server = new ApolloServer({
   // Add context to our server so data from the `authMiddleware()` function can pass data to our resolver functions
   context: authMiddleware,
 });
+//using version 3 of apollo server
+await server.start();
 //apply the middleware to express app
 server.applyMiddleware({ app });
 // express middlware
