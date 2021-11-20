@@ -5,6 +5,7 @@ const typeDefs = gql`
         _id: ID!
         username: String
         email: String!
+        # might not need to include password here..
         password: String!
         savedBooks: [Book]!
     }
@@ -43,8 +44,10 @@ const typeDefs = gql`
        # Set up mutations to handle creating a profile or logging into a profile and return Auth type
        addUser(username: String!, email: String!, password: String!): Auth
        login( email: String!, password: String!):Auth
-       addBook(userId: ID!, bookId: ID!): User
-       removeBook(userId: ID!, input: savedBookInput!): user
+       #setup mutations to add book to savedbooks arr and one to remove from arr
+       addBook(input: savedBookInput
+       !): User
+       removeBook(bookId: ID!): User
 
   }
 
