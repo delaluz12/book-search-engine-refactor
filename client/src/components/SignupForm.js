@@ -38,15 +38,16 @@ const SignupForm = () => {
 
     //use addUser mutation
     try {
-      const response = await addUser({ variables: { ...userFormData } });
+      //set var to destructured obj of response data
+      const {data} = await addUser({ variables: userFormData  });
+      console.log(data);
 
-      if (!response.ok) {
+      if (!data) {
         throw new Error("something went wrong!");
       }
 
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
+      //pass in token recevied from mutation response
+      Auth.login(data.addUser.token);
       //part of mutation use
       window.location.reload();
     } catch (err) {
