@@ -12,7 +12,7 @@ import { useMutation } from "@apollo/client";
 import { SAVE_BOOK } from "../utils/mutations";
 
 import Auth from "../utils/auth";
-import { searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 
 const SearchBooks = () => {
@@ -78,17 +78,17 @@ const SearchBooks = () => {
     }
     // excute mutation to save book to db. pass in book obj from bookToSave const
     try {
-      const response = await saveBook({
-        variables: { bookToSave },
+      const { data } = await saveBook({
+        variables: {input: bookToSave },
       });
 
-      if (!response.ok) {
+      if (!data) {
         throw new Error("something went wrong!");
       }
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       console.error(err);
     }
