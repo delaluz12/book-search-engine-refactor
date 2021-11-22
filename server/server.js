@@ -37,8 +37,8 @@ app.get("*", (req, res) => {
 
 db.once("open", () => {
   app.listen(PORT, () => {
-    consol; // log where we can go to test our GQL API
+     // log where we can go to test our GQL API
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    e.log(`🌍 Now listening on localhost:${PORT}`);
+    console.log(`🌍 Now listening on localhost:${PORT}`);
   });
 });
