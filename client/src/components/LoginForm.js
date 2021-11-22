@@ -29,15 +29,17 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await login({ variables: { userFormData } });
+      console.log(userFormData);
+      const {data} = await login({ variables:  userFormData  });
+      console.log(data);
 
-      if (!response.ok) {
+      if (!data) {
         throw new Error("something went wrong!");
       }
 
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
+     
+    
+      Auth.login(data.login.token);
       //part of mutation use
       window.location.reload();
     } catch (err) {
