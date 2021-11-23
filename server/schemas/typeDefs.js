@@ -5,8 +5,6 @@ const typeDefs = gql`
     _id: ID!
     username: String
     email: String!
-    # might not need to include password here..
-    # password: String!
     bookCount: Int
     savedBooks: [Book]!
   }
@@ -35,9 +33,6 @@ const typeDefs = gql`
     user: User
   }
   type Query {
-    users: [User]!
-      # users: [User]! ==not needed according to project readme
-    #   user:(userId: ID!, username: String): User  ==not needed according to project readme
     me: User
   }
 

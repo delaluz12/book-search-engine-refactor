@@ -12,9 +12,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    users: async (parent, args)=> {
-      return User.find({})
-    }
+    
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
