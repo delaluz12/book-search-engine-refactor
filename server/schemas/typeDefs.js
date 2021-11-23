@@ -35,7 +35,8 @@ const typeDefs = gql`
     user: User
   }
   type Query {
-    #   users: [User]! ==not needed according to project readme
+    users: [User]!
+      # users: [User]! ==not needed according to project readme
     #   user:(userId: ID!, username: String): User  ==not needed according to project readme
     me: User
   }

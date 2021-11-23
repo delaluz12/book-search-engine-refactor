@@ -38,14 +38,14 @@ const resolvers = {
     },
     // use context to that we know which user profile to save the book data to
 
-    addBook: async (parent, { savedBookData }, context) => {
+    addBook: async (parent, { input }, context) => {
       // check to see if there is a user logged in
       // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      console.log(context)
+      
       if (context.user) {
-        return await User.findOneAndUpdate(
+        return User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: savedBookData } },
+          { $addToSet: { savedBooks: input} },
           {
             new: true,
             runValidators: true,
@@ -58,7 +58,7 @@ const resolvers = {
     removeBook: async (parent, {bookId}, context)=>{
       // Make it so a logged in user can only remove a book from their own profile  
       if(context.user){
-          return await User.findOneAndUpdate(
+          return User.findOneAndUpdate(
               {_id: context.user._id},
               {$pull: {savedBooks: {bookId: bookId}}},
               {new: true},
