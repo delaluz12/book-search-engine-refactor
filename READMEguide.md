@@ -1,3 +1,6 @@
+
+# book-search-engine-refactor
+Refactoring Google Books API search engine to utilize GraphQL with Apollo Server.
 # 21 MERN: Book Search Engine
 
 ## Your Task
